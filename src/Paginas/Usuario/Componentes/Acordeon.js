@@ -69,7 +69,7 @@ function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
         <Accordion.Header>Descripción del Bug</Accordion.Header>
         <Accordion.Body>
           <textarea
-            className="caja-texto textarea-basic"
+            className="caja-texto textarea-basic testAcordeonDescripcionBug"
             value={desBug}
             onChange={handleDescripcionBug}
             placeholder="Ingrese una descripción detallada del bug y los pasos necesarios para replicarlo"
