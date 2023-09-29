@@ -1,5 +1,4 @@
 import {
-  getFirestore,
   updateDoc,
   doc,
   getDoc,
@@ -9,17 +8,15 @@ import {
   getDocs,
   serverTimestamp,
   addDoc,
-  orderBy,
-  Timestamp,
+  orderBy
 } from "firebase/firestore";
-
+import {db} from "../firebaseConfig/firebase"
 export const obtenerReportesAdministrador = async (
   administradorId,
   estado,
   selectedItem
 ) => {
   try {
-    const db = getFirestore();
     const referenciaAdministrador = doc(db, "administradores", administradorId);
     const proyectosCollection = collection(db, "proyectos");
     const reportesCollection = collection(db, "reportes");
@@ -82,8 +79,6 @@ export const obtenerReportesAdministrador = async (
 export const obtenerDatosAdministrador = async (administradorId) => {
   try {
     console.log("obtenerDatosAdministrador");
-    // Crea una instancia de Firestore.
-    const db = getFirestore();
 
     // Crea una referencia al documento del administrador en la colección "administradores" utilizando el ID proporcionado.
     const referenciaAdministrador = doc(db, "administradores", administradorId);
@@ -111,7 +106,6 @@ export const obtenerUsuario = async (usuarioId) => {
   try {
     console.log("obtenerUsuario");
     // Crea una instancia de Firestore.
-    const db = getFirestore();
 
     // Crea una referencia al documento del usuario en la colección "usuarios" utilizando el ID proporcionado.
     const referenciaUsuario = doc(db, "usuarios", usuarioId);
@@ -139,7 +133,6 @@ export const getReportesUsuario = async (usuarioId) => {
   try {
     console.log("getReportesUsuario");
     // Crea una instancia de Firestore.
-    const db = getFirestore();
 
     const proyectosCollection = collection(db, "proyectos");
     const reportesCollection = collection(db, "reportes");
@@ -185,7 +178,6 @@ export const getReportesUsuario = async (usuarioId) => {
 export const getProyectosUsuario = async (usuarioId) => {
   try {
     console.log("getproyectoUsuario");
-    const db = getFirestore();
 
     const referenciaUsuario = doc(db, "usuarios", usuarioId);
 
@@ -209,7 +201,6 @@ export const getProyectosUsuario = async (usuarioId) => {
 export const enviarReporteUsuario = async (datosReporte) => {
   try {
     console.log("enviarReporteUsuario");
-    const db = getFirestore();
 
     const referenciaProyecto = doc(db, "proyectos", datosReporte.proyecto);
 
@@ -237,7 +228,6 @@ export const enviarReporteUsuario = async (datosReporte) => {
 export const obtenerDatosReporte = async (reporteId) => {
   try {
     console.log("obtenerDatosReporte");
-    const db = getFirestore();
 
     const referenciaReporte = doc(db, "reportes", reporteId);
 
@@ -262,7 +252,6 @@ export const obtenerInfoProyectoDesdeReporte = async (reporteId) => {
   try {
     console.log("obtenerInfoProyectoDesdeReporte");
     // Crea una instancia de Firestore.
-    const db = getFirestore();
 
     // Crea una referencia al documento del reporte en la colección "reportes" utilizando el ID proporcionado.
     const referenciaReporte = doc(db, "reportes", reporteId);
@@ -301,7 +290,6 @@ export const obtenerDepurador = async (depuradorId) => {
   try {
     console.log("obtenerDepurador");
     // Crea una instancia de Firestore.
-    const db = getFirestore();
 
     // Crea una referencia al documento del depurador en la colección "depurador" utilizando el ID proporcionado.
     const referenciaUsuario = doc(db, "depuradores", depuradorId);
@@ -329,7 +317,6 @@ export const getReportesDepurador = async (depuradorId, estado) => {
   try {
     console.log("getReportesDepurador");
     // Crea una instancia de Firestore.
-    const db = getFirestore();
 
     const proyectosCollection = collection(db, "proyectos");
     const reportesCollection = collection(db, "reportes");
@@ -402,8 +389,6 @@ export const getNombreProyecto = async (referenciaReporte) => {
 
 export const obtenerDepuradoresDesdeProyecto = async (proyectoId) => {
   try {
-    // Crea una instancia de Firestore.
-    const db = getFirestore();
 
     // Crea una referencia al documento del proyecto en la colección "proyectos" utilizando el ID proporcionado.
     const referenciaProyecto = doc(db, "proyectos", proyectoId);
@@ -455,7 +440,6 @@ export const actualizarReporte = async (
 ) => {
   try {
     // Obtener una referencia al documento del reporte en Firestore
-    const db = getFirestore();
     const reporteRef = doc(db, "reportes", reporteId);
 
     // Obtener una referencia al documento del depurador en Firestore
@@ -481,8 +465,6 @@ export const actualizarReporte = async (
 
 export const obtenerInformacionUsuario = async (proyectoId) => {
   try {
-    // Obtener una instancia de Firestore
-    const db = getFirestore();
 
     // Obtener la referencia del proyecto
     const proyectoRef = doc(db, "proyectos", proyectoId);
@@ -518,7 +500,6 @@ export const obtenerInformacionUsuario = async (proyectoId) => {
 
 export const aceptarBug = async (reporteId) => {
   try {
-    const db = getFirestore();
 
     const reporteRef = doc(db, "reportes", reporteId);
 
@@ -534,7 +515,6 @@ export const aceptarBug = async (reporteId) => {
 
 export const solicitarReasignacion = async (reporteId, comentario) => {
   try {
-    const db = getFirestore();
 
     const reporteRef = doc(db, "reportes", reporteId);
     const nuevoMensaje = {
@@ -551,7 +531,6 @@ export const solicitarReasignacion = async (reporteId, comentario) => {
 
 export const enviarReporteFinal = async (reporteId, comentario) => {
   try {
-    const db = getFirestore();
 
     const reporteRef = doc(db, "reportes", reporteId);
     const reporteFinal = {
@@ -568,7 +547,6 @@ export const enviarReporteFinal = async (reporteId, comentario) => {
 
 export const enviarReporteParcial = async (reporteId, comentario) => {
   try {
-    const db = getFirestore();
     const reporteRef = doc(db, "reportes", reporteId);
     const reporteParcial = {
       fechaReporte: serverTimestamp(),
@@ -586,7 +564,6 @@ export const enviarReporteParcial = async (reporteId, comentario) => {
 export const getReportesParciales = async (reporteId) => {
   try {
     console.log("getReportesParciales");
-    const db = getFirestore();
     console.log("muero aqui?1");
     const reporteRef = doc(db, "reportes", reporteId);
 
@@ -632,7 +609,6 @@ export const getDepurador = async (depuradorRef) => {
 export const rechazarReporteUsuario = async (reporteId, comentario) => {
   try {
     console.log("rechazarReporteUsuario");
-    const db = getFirestore();
     const reporteRef = doc(db, "reportes", reporteId);
 
     const cambioEstado = {
@@ -650,7 +626,6 @@ export const rechazarReporteUsuario = async (reporteId, comentario) => {
 export const aceptarBugFinal = async (reporteId) => {
   try {
     console.log("aceptarBugFinal");
-    const db = getFirestore();
     const reporteRef = doc(db, "reportes", reporteId);
 
     const cambioEstado = {
@@ -667,7 +642,6 @@ export const aceptarBugFinal = async (reporteId) => {
 export const rechazarReporteFinal = async (reporteId) => {
   try {
     console.log("aceptarBugFinal");
-    const db = getFirestore();
     const reporteRef = doc(db, "reportes", reporteId);
 
     const cambioEstado = {
@@ -684,7 +658,6 @@ export const rechazarReporteFinal = async (reporteId) => {
 export const rechazarReasignacion = async (reporteId) => {
   try {
     console.log("aceptarBugFinal");
-    const db = getFirestore();
     const reporteRef = doc(db, "reportes", reporteId);
 
     const cambioEstado = {
@@ -702,7 +675,6 @@ export const rechazarReasignacion = async (reporteId) => {
 export const reasignarDepurador = async (depuradorSeleccionado, reporte) => {
   try {
     console.log("reasignarDepurador");
-    const db = getFirestore();
     const reporteRef = doc(db, "reportes", reporte);
     const depuradorRef = doc(db, "depuradores", depuradorSeleccionado);
     const nuevoDepurador = {
@@ -721,7 +693,6 @@ export const reasignarDepurador = async (depuradorSeleccionado, reporte) => {
 export const reasignarDepuradorOtroMomento = async (reporteId) => {
   try {
     console.log("reasignarDepuradorOtroMomento");
-    const db = getFirestore();
     const reporteRef = doc(db, "reportes", reporteId);
 
     const cambioEstado = {
@@ -743,7 +714,6 @@ export const reasignarDepuradorOtroMomento = async (reporteId) => {
 
 export const obtenerUsuariosPorAdministrador = async (administradorId) => {
   try {
-    const db = getFirestore();
     const administradorRef = doc(db, "administradores", administradorId);
     const proyectosCollection = collection(db, "proyectos");
     const usuariosCollection = collection(db, "usuarios");
@@ -781,8 +751,6 @@ export const conseguirTipoDeCuenta = async (email) => {
   // depuradores == 3
   // ninguno == -1
   try {
-    const db = getFirestore();
-
     const usuariosRef = collection(db, "usuarios");
 
     let q = query(usuariosRef, where("cuenta.correo", "==", email));
