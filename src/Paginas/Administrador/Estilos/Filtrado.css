@@ -1,0 +1,23 @@
+.Filtro {
+  display: flex !important;
+  justify-content:space-between !important;
+  align-items: center;
+  width: 40vh;
+  border-radius: 10px;
+  border: 1px solid #ccc; /* Borde fijo */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+  transition: border-color 0.3s ease; /* Transición suave del color del borde */
+  text-indent: 1vh;
+  color: rgba(0, 0, 0, 0.5); /* Color negro débil */
+
+}
+
+.Filtro:hover {
+  border-color: blue !important; /* Cambio de color del borde al hacer hover */
+}
+
+.Filtro:focus {
+  outline: none; /* Evitar el contorno predeterminado en el enfoque */
+  border-color: blue; /* Color del borde cuando el filtro está seleccionado */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra adicional cuando está seleccionado */
+}

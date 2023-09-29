@@ -1,0 +1,22 @@
+.casa {
+    text-align: center !important;
+    align-items: center !important;
+    height: 5vh !important;
+    width: 25vh !important;
+    border-radius: 25px;
+  }
+  
+  .alta {
+    background-color: red !important;
+    color: white !important;
+  }
+  
+  .media {
+    background-color: yellow !important;
+    color: black !important;
+  }
+  
+  .baja {
+    background-color: green !important;
+    color: white !important;
+  }

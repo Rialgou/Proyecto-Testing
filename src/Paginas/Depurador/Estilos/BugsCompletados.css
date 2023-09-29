@@ -1,0 +1,91 @@
+
+.lista-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+  }
+  
+  .botones-stack {
+    height: 5vh;
+    width: 30vh;
+    border-radius: 25px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .contenedor-formulario {
+    border-radius: 30px;
+     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+     background-color: rgba(250, 250, 250, 0.87);
+     padding: 20px;
+     border: 1px solid #ccc;
+  }
+  
+  .fila-botones {
+    margin-top: 9vh;
+  }
+
+  .contenedor {
+    max-height: 125px;
+    width: 0%;
+    max-width: 200px;
+    margin: 50px auto;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0px 0px 20px 0px rgba(209, 209, 209, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    gap: 20px;
+  }
+  .lista-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+  }
+  
+  .lista-item:first-child {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+  }
+  
+  .lista-item:last-child {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+
+  .parrafo {
+    word-wrap: break-word;
+    margin: 0;
+    text-align: left;
+    font-size: 16px;
+    max-height: 22vh !important; /* Altura máxima antes de habilitar el scroll */
+    overflow-y: auto; /* Habilitar el scroll vertical cuando se supera la altura máxima */
+  }
+  
+
+  .parrafo-placeholder {
+    opacity: 0.5; /* Ejemplo de transparencia */
+    /* Otros estilos para los campos no seleccionados */
+  }
+
+  .parrafo::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+  }
+  
+  .parrafo::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo del track */
+  }
+  
+  .parrafo::-webkit-scrollbar-thumb {
+    background: #888; /* Color del thumb (barra deslizante) */
+  }
+  
+  .parrafo::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del thumb en hover */
+  }

@@ -1,0 +1,73 @@
+.acordeon-bugs-proceso {
+    width: 95%;
+}
+
+.bug-info span {
+    margin-right: 25px;
+}
+
+.accordion-button {
+    background-color: #BAC7C9 !important;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2), 0px 10px 20px rgba(0, 0, 0, 0.2); /* sombra */
+}
+
+.accordion-button:focus {
+    /* background-color: #FFF3CD!important; */
+    background-color: rgba(35, 79, 85, 0.49) !important;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
+}
+
+.accordion-button:not(.collapsed) {
+   color: black !important;
+}
+
+.accordion-body {
+    background-color: #D3D3D4 !important;
+}
+
+.textarea-custom {
+    margin-top: 10px;
+    width: 100%;
+    height: 150px;
+}
+
+.textarea-custom::placeholder {
+    color: rgba(35, 79, 85, 0.49);
+  }
+
+.textarea-basic {
+    background-color: #D3D3D9;
+    border-color: rgb(230,230,230);
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.descripcion-titulo {
+    color: rgba(35, 79, 85, 0.49);
+}
+
+.botones-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+   
+.boton-parcial {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+  
+.boton-final {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.modal-basic .modal-content {
+    background-color:  #93A8AB;
+}
+
+.modal-campo .modal-content {
+    background-color: #212529;
+    color: rgb(230,230,230);
+}

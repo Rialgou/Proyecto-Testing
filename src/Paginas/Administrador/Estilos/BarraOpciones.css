@@ -1,0 +1,14 @@
+.offcanvas-custom {
+  z-index: 1040; /* Asegura que el Offcanvas esté por debajo de la barra superior */
+  margin-top: 65px; /* Ajusta este valor según la altura de tu barra superior */
+  width: 100%; /* Ajusta el ancho del Offcanvas al 100% */
+}
+
+
+  .boton 
+  {
+    height: 7vh;
+  }
+  
+ 
+  

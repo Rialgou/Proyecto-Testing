@@ -1,0 +1,47 @@
+
+
+*{
+  font-family: 'Open Sans', sans-serif;
+  
+}
+
+html,
+body {
+  font-size: 18px; /*20*/
+  background-color: #1e7781;
+
+}
+
+ .App {
+  background-color: #1e7781;
+  };
+
+
+.fila-principal {
+  height: 0;
+}
+
+.columna-1
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.titulo
+{
+  font-size: 2.3rem;
+}
+
+
+.contenedor-boton {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 1rem;
+}
+
+
+
+

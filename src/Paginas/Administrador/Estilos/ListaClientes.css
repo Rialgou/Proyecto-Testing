@@ -1,0 +1,33 @@
+.lista-clientes {
+    margin-top: 5vh;
+  }
+  
+  .card-cliente {
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 0.6rem;
+  }
+  
+  .card-cliente:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-cliente .card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .card-cliente .card-text {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
