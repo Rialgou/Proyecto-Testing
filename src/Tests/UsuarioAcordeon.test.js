@@ -1,6 +1,7 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+
 import Acordeon from "../Paginas/Usuario/Componentes/Acordeon";
 
 describe("Funciones dentro del componente Acordeon en la pagina de usuario", () => {
@@ -45,7 +46,7 @@ describe("Funciones dentro del componente Acordeon en la pagina de usuario", () 
   });
   // HandleTitle
   describe("handleTitle", () => {
-    test("el placeholder debe existir", ()=>{
+    test("el placeholder debe existir", () => {
       render(<Acordeon />);
       const expandTitle = screen.getByText("Título del Bug");
       fireEvent.click(expandTitle);
@@ -54,7 +55,7 @@ describe("Funciones dentro del componente Acordeon en la pagina de usuario", () 
         "Ingrese una descripción detallada del bug y los pasos necesarios para replicarlo"
       );
       expect(placeHolder).toBeInTheDocument();
-    })
+    });
     test("cambia el estado title con un nuevo valor", () => {
       const titleMock = jest.fn();
       render(<Acordeon tituloBug={titleMock} />);

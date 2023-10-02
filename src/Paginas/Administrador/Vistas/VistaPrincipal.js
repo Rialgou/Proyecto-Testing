@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Container, Row, Col, Badge } from "react-bootstrap";
+
 import BarraOpciones from "../Componentes/BarraOpciones";
 import Opciones from "../Componentes/Opciones";
 import BarraSuperiorAdministrador from "../Componentes/BarraSuperiorAdministrador";

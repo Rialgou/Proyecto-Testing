@@ -18,8 +18,7 @@ const ContextoAdministrador = createContext();
 
 const AdministradorProvider = ({ children }) => {
   const { cuenta } = useContext(HomeContext);
-
-  const administradorId = cuenta.id;
+  const administradorId = cuenta ? cuenta.id : null;
 
   const [IDReporte, SetIDReporte] = useState({});
   const [administrador, setAdministrador] = useState({});
