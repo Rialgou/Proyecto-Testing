@@ -1,6 +1,7 @@
 const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { Builder, By, Capabilities, Key, until } = require('selenium-webdriver');
+const fsp = require('fs').promises
 
 // driver setup
 const capabilities = Capabilities.chrome();
@@ -19,26 +20,43 @@ Given('estoy en el panel de control del administrador', async () => {
 });
 
 When('hago click en el botón bugs pendientes del menú lateral', async () => {
-  const actions = driver.actions({ async: true });
-  // actions.move({x:, y:})
+  const button = await driver.wait(until.elementLocated(By.id('radio-0')), 10000);
+  button.click();
+  const cerrarPanel = driver.findElement(By.className('btn-close'));
+  cerrarPanel.click();
 });
 
-Then('debería ver la lista con los bug no asignados', () => {
-
+Then('debería ver la lista con los bug no asignados', async () => {
+  const lista = await driver.wait(until.elementLocated(By.className('lista-container')), 10000);
+  const listaVisible = await lista.isDisplayed();
+  if (listaVisible == false) {
+    assert.fail('Lista de reportes no visible');
+  }
 });
 
-When('hago click en el botón de ingresar del primer bug', () => {
-
+When('hago click en el botón de ingresar del primer bug', async () => {
+  const button = await driver.wait(until.elementLocated(By.id('probar-0')), 10000);
+  button.click();
 });
 
-Then('debería ver la página del reporte específico', () => {
-
+Then('debería ver la página del reporte específico', async () => {
+  await driver.wait(until.urlContains('cXasuGhc6bTlINXWt902'), 10000);
+  const url = await driver.getCurrentUrl();
+  if (!url.includes('cXasuGhc6bTlINXWt902')) {
+    assert.fail('No estamos en la pagina del reporte seleccionado');
+  }
 });
 
-When('doy click en enviar reporte', () => {
-
+When('doy click en enviar reporte', async () => {
+  const button = await driver.wait(until.elementLocated(By.name('enviar-reporte')), 10000);
+  button.click();
 });
 
-Then('se debe mostrar una advertencia, pidiendo rellenar todos los campos', () => {
-
+Then('se debe mostrar una advertencia, pidiendo rellenar todos los campos', async () => {
+  const alerta = await driver.wait(until.elementLocated(By.id('contained-modal-title-vcenter')), 10000);
+  const alertaPresente = await alerta.isDisplayed();
+  if (!alertaPresente) {
+    assert.fail('No se presento alerta al ingresar reporte sin depurador asignado');
+  }
+  driver.close();
 });

@@ -69,7 +69,7 @@ const Reporte = () => {
     navigate("/administrador");
   };
 
-  const handleModalClose = () =>{
+  const handleModalClose = () => {
     setShowModal(false);
     navigate("/administrador");
   }
@@ -107,16 +107,16 @@ const Reporte = () => {
 
     return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
   };
-  
+
   const handleAdminButtonClick = () => {
     navigate("/administrador");
   };
 
-  const handleAdminButtonClickReject = async(comentario) => {
-    if(await rechazarReporteUsuario(reporte.id, comentario)){
+  const handleAdminButtonClickReject = async (comentario) => {
+    if (await rechazarReporteUsuario(reporte.id, comentario)) {
       handleClose();
     }
-    else{
+    else {
       console.log("hubo un error");
       alert("fallou");
     }
@@ -124,7 +124,7 @@ const Reporte = () => {
 
   const handleShow = () => setShow(true);
 
-  const handleCancel = () =>{
+  const handleCancel = () => {
     setShow(false);
     setTextareaValue('');
   }
@@ -506,9 +506,8 @@ const Reporte = () => {
                   </Col>
                   <Col xs={12} md={9}>
                     <p
-                      className={`parrafo ${
-                        depuradorSeleccionado ? "" : "parrafo-placeholder"
-                      }`}
+                      className={`parrafo ${depuradorSeleccionado ? "" : "parrafo-placeholder"
+                        }`}
                     >
                       {depuradorSeleccionado
                         ? depuradorSeleccionado.nombre
@@ -529,9 +528,8 @@ const Reporte = () => {
                   </Col>
                   <Col xs={12} md={9}>
                     <p
-                      className={`parrafo ${
-                        fechaSeleccionada ? "" : "parrafo-placeholder"
-                      }`}
+                      className={`parrafo ${fechaSeleccionada ? "" : "parrafo-placeholder"
+                        }`}
                     >
                       {fechaSeleccionada
                         ? fechaSeleccionada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
@@ -552,9 +550,8 @@ const Reporte = () => {
                   </Col>
                   <Col xs={12} md={9}>
                     <p
-                      className={`parrafo ${
-                        prioridadSeleccionada ? "" : "parrafo-placeholder"
-                      }`}
+                      className={`parrafo ${prioridadSeleccionada ? "" : "parrafo-placeholder"
+                        }`}
                     >
                       {prioridadSeleccionada
                         ? prioridadSeleccionada
@@ -575,9 +572,8 @@ const Reporte = () => {
                   </Col>
                   <Col xs={12} md={9}>
                     <p
-                      className={`parrafo ${
-                        descripcion ? "" : "parrafo-placeholder"
-                      }`}
+                      className={`parrafo ${descripcion ? "" : "parrafo-placeholder"
+                        }`}
                     >
                       <pre className="descripcion-bug">
                         {descripcion ? descripcion : "Escoger descripción"}
@@ -614,7 +610,7 @@ const Reporte = () => {
                   <Button
                     variant="success"
                     disabled={textareaValue.trim() === ''}
-                    onClick={()=> handleAdminButtonClickReject(textareaValue)}
+                    onClick={() => handleAdminButtonClickReject(textareaValue)}
                   >
                     Enviar
                   </Button>
@@ -623,23 +619,24 @@ const Reporte = () => {
               <Modal centered className="modal-basic" show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                   <Modal.Title>
-                  Motivo de rechazo de reporte enviado
+                    Motivo de rechazo de reporte enviado
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                El motivo de rechazo de reporte se ha enviado con éxito.
+                  El motivo de rechazo de reporte se ha enviado con éxito.
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={() => handleModalClose()}>
                     Cerrar
                   </Button>
                 </Modal.Footer>
-            </Modal>
+              </Modal>
 
               <Button
                 variant="success"
                 className=" botoness mt-5 ms-5 "
                 onClick={enviarReporte}
+                name='enviar-reporte'
               >
                 Enviar reporte
               </Button>
