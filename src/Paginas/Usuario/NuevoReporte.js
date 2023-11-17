@@ -177,6 +177,7 @@ function NuevoReporte() {
           show={showAlertSuccess}
           onHide={handleCloseAlertSuccess}
           className="modal-basic"
+          data-testid="success-modal"
         >
           <Modal.Header closeButton>
             <Modal.Title>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -11,6 +11,7 @@ const ReportesUsuarios = ({filtro}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [reportesFiltrados, setReportesFiltrados] = useState([]);
+  const titleRefs = useRef([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +55,7 @@ const ReportesUsuarios = ({filtro}) => {
         {reportesFiltrados.slice(startIndex, endIndex).map((list, index) => (
           <Accordion.Item key={index} eventKey={index}>
             <Card>
-              <Accordion.Header>
+              <Accordion.Header ref={(el) => (titleRefs.current[index] = el)}>
                 <div>
                   <span className="bug-info">
                     <span> Bug {startIndex + index + 1} </span>
