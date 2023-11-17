@@ -464,6 +464,7 @@ const Home = () => {
                   onClick={handleSubmit}
                   variant="dark"
                   type="submit"
+                  name="ingresar"
                 >
                   Iniciar sesion
                 </Button>

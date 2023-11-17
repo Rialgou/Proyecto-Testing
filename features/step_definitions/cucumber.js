@@ -15,4 +15,13 @@ module.exports = {
 (US10) Como administrador, quiero tener detalles de todos los depuradores que han trabajado en el proyecto del bug notificado, para ver su información
 (US11) Como administrador, quiero poder revisar el bug antes de asignarlo a un depurador, para asegurarme que el problema existe
 (US12) Como administrador, quiero recibir reportes parciales y finales de los bugs por parte de los depuradores
+
+depurador: ignacioarcic@gmail.com
+pass: IgnacioArcic123
+admin: marcelopena@gmail.com
+pass: MarceloPeña123 
+usuario: ceciliahernandez@gmail.com
+pass: CeciliaHernandez123
+admin: richardgonzalez@gmail.com
+pass: RichardGonzalez123
 */
