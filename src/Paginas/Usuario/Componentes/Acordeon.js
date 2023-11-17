@@ -43,7 +43,7 @@ function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
   return (
     <Accordion defaultActiveKey={['-1']} alwaysOpen>
       <Accordion.Item eventKey="0">
-        <Accordion.Header>Seleccionar proyecto</Accordion.Header>
+        <Accordion.Header >Seleccionar proyecto</Accordion.Header>
         <Accordion.Body>
           <BotonesProyectos seleccionarProyecto={handleProyectSelect} />
         </Accordion.Body>
@@ -70,6 +70,7 @@ function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
         <Accordion.Header>Descripción del Bug</Accordion.Header>
         <Accordion.Body>
           <textarea
+            data-testid="description-test"
             className="caja-texto textarea-basic"
             value={desBug}
             onChange={handleDescripcionBug}

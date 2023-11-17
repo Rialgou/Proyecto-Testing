@@ -30,12 +30,13 @@ function BotonesProyectos({ seleccionarProyecto }) {
     
     return (
         <div>
-            {proyectosData.map((proyecto) => (
+            {proyectosData.map((proyecto,index) => (
                 <Button
                     key={proyecto.id}
                     variant={botonSeleccionado === proyecto.id ? "primary" : "secondary"}
                     onClick={() => seleccionarBoton(proyecto.id)}
                     className="boton"
+                    data-testid={`proyecto-${index}`}
                 >
                     {proyecto.nombre}
                 </Button>

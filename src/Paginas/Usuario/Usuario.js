@@ -74,9 +74,8 @@ function Usuario() {
               className="boton-enviar"
               variant="dark"
               onClick={handleNewReportClick}
-            >
-              Crear nuevo reporte
-            </Button>
+              name="nuevo-reporte"
+            >Crear nuevo reporte</Button>
           </div>
         </Stack>
       </main>

@@ -3,10 +3,10 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import Acordeon from "../Paginas/Usuario/Componentes/Acordeon";
-
 describe("Funciones dentro del componente Acordeon en la pagina de usuario", () => {
-  // HandleDescripcionBug
+  // handleDescripcionBug
   describe("handleDescripcionBug", () => {
+
     test("el placeHolder debe existir", () => {
       render(<Acordeon />);
       const placeHolder = screen.getByPlaceholderText(
@@ -44,7 +44,8 @@ describe("Funciones dentro del componente Acordeon en la pagina de usuario", () 
       expect(descripcionMockBug).toHaveBeenCalledWith("Texto3");
     });
   });
-  // HandleTitle
+
+  // handleTitle
   describe("handleTitle", () => {
     test("el placeholder debe existir", () => {
       render(<Acordeon />);
