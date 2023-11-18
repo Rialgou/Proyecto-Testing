@@ -16,7 +16,10 @@ import {
   ListGroup,
   Modal,
 } from "react-bootstrap";
-import { actualizarReporte, rechazarReporteUsuario } from "../../../Funciones/consultas";
+import {
+  actualizarReporte,
+  rechazarReporteUsuario,
+} from "../../../Funciones/consultas";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from "react";
 import { motion } from "framer-motion";
@@ -44,10 +47,9 @@ const Reporte = () => {
   const [prioridadSeleccionada, setPrioridadSeleccionada] = useState(null);
   const [descripcion, setDescripcion] = useState(null);
 
-
   const [showAlertParcial, setShowAlertParcial] = useState(false);
   const [show, setShow] = useState(false);
-  const [textareaValue, setTextareaValue] = useState('');
+  const [textareaValue, setTextareaValue] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const [showDepurador, setShowDepurador] = useState(false);
@@ -69,10 +71,10 @@ const Reporte = () => {
     navigate("/administrador");
   };
 
-  const handleModalClose = () =>{
+  const handleModalClose = () => {
     setShowModal(false);
     navigate("/administrador");
-  }
+  };
 
   const handleClose = () => {
     setShow(false);
@@ -105,18 +107,21 @@ const Reporte = () => {
   const formatoFecha = (fecha) => {
     const fechaFormaterada = fecha.toDate();
 
-    return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    return fechaFormaterada.toLocaleString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
-  
+
   const handleAdminButtonClick = () => {
     navigate("/administrador");
   };
 
-  const handleAdminButtonClickReject = async(comentario) => {
-    if(await rechazarReporteUsuario(reporte.id, comentario)){
+  const handleAdminButtonClickReject = async (comentario) => {
+    if (await rechazarReporteUsuario(reporte.id, comentario)) {
       handleClose();
-    }
-    else{
+    } else {
       console.log("hubo un error");
       alert("fallou");
     }
@@ -124,10 +129,10 @@ const Reporte = () => {
 
   const handleShow = () => setShow(true);
 
-  const handleCancel = () =>{
+  const handleCancel = () => {
     setShow(false);
-    setTextareaValue('');
-  }
+    setTextareaValue("");
+  };
   const handleTextareaChange = (event) => {
     setTextareaValue(event.target.value);
   };
@@ -353,6 +358,7 @@ const Reporte = () => {
                 variant="dark"
                 onClick={handleShowDepurador}
                 className="botones"
+                data-testid="asignar-depurador-btn" // Identificador para Selenium
               >
                 Asignar Depurador
               </Button>
@@ -390,6 +396,7 @@ const Reporte = () => {
                 variant="dark"
                 onClick={handleShowCalendario}
                 className="botones"
+                data-testid="asignar-fecha-btn" // Identificador para Selenium
               >
                 Asignar Fecha
               </Button>
@@ -429,12 +436,14 @@ const Reporte = () => {
 
               <PrioridadButton
                 setPrioridadSeleccionada={setPrioridadSeleccionada}
+                data-testid="prioridad-btn" // Identificador para Selenium
               ></PrioridadButton>
 
               <Button
                 variant="dark"
                 onClick={handleShowText}
                 className="botones"
+                data-testid="agregar-descripcion-btn" // Identificador para Selenium
               >
                 Agregar Descripción
               </Button>
@@ -533,9 +542,15 @@ const Reporte = () => {
                         fechaSeleccionada ? "" : "parrafo-placeholder"
                       }`}
                     >
-                      {fechaSeleccionada
-                        ? fechaSeleccionada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
-                        : <span>Escoger fecha de entrega</span>}
+                      {fechaSeleccionada ? (
+                        fechaSeleccionada.toLocaleString(undefined, {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })
+                      ) : (
+                        <span>Escoger fecha de entrega</span>
+                      )}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -595,11 +610,20 @@ const Reporte = () => {
               >
                 Rechazar reporte
               </Button>
-              <Modal centered show={show} onHide={handleCancel} dialogClassName="modal-basic" contentClassName="modal-reasignacion">
+              <Modal
+                centered
+                show={show}
+                onHide={handleCancel}
+                dialogClassName="modal-basic"
+                contentClassName="modal-reasignacion"
+              >
                 <Modal.Header closeButton>
                   <Modal.Title>
                     ¿Por qué está rechazando el reporte?
-                    <span role="img" aria-label="Emoticono Cara Pensativa"> 🤔</span>
+                    <span role="img" aria-label="Emoticono Cara Pensativa">
+                      {" "}
+                      🤔
+                    </span>
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -613,28 +637,36 @@ const Reporte = () => {
                 <Modal.Footer>
                   <Button
                     variant="success"
-                    disabled={textareaValue.trim() === ''}
-                    onClick={()=> handleAdminButtonClickReject(textareaValue)}
+                    disabled={textareaValue.trim() === ""}
+                    onClick={() => handleAdminButtonClickReject(textareaValue)}
                   >
                     Enviar
                   </Button>
                 </Modal.Footer>
               </Modal>
-              <Modal centered className="modal-basic" show={showModal} onHide={() => setShowModal(false)}>
+              <Modal
+                centered
+                className="modal-basic"
+                show={showModal}
+                onHide={() => setShowModal(false)}
+              >
                 <Modal.Header closeButton>
                   <Modal.Title>
-                  Motivo de rechazo de reporte enviado
+                    Motivo de rechazo de reporte enviado
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                El motivo de rechazo de reporte se ha enviado con éxito.
+                  El motivo de rechazo de reporte se ha enviado con éxito.
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={() => handleModalClose()}>
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleModalClose()}
+                  >
                     Cerrar
                   </Button>
                 </Modal.Footer>
-            </Modal>
+              </Modal>
 
               <Button
                 variant="success"
