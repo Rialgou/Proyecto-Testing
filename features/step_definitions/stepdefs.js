@@ -1,6 +1,7 @@
 const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { Builder, By, Capabilities, Key, until } = require('selenium-webdriver');
+const { elementIsEnabled } = require('selenium-webdriver/lib/until');
 const fsp = require('fs').promises
 
 // driver setup
@@ -104,5 +105,43 @@ Then('se debe mostrar una advertencia, pidiendo dar detalles del avance.', async
   if (!alertaPresente) {
     assert.fail('No se presento alerta al ingresar reporte sin detalles entregados');
   }
-  await driver.close();
+});
+
+/////////////////////////////////////////////////////////////////////
+
+When('hago click en el primer reporte de la lista de reportes', async () => {
+  // try {
+  const reporte = await driver.wait(elementIsEnabled(By.id('reporte-pendiente-0')), 10000);
+  await reporte.click()
+  // perform actions on the element
+  // } catch (e) {
+  //   driver.sleep(4000)
+  //   const reporte = await driver.wait(until.elementLocated(By.id('reporte-pendiente-0')), 10000);
+  //   await reporte.click()
+
+  // element is no longer attached to the DOM
+  // find the element again or perform an alternative action
+  // }
+
+  // const reporte = await driver.wait(until.elementIsVisible(By.id('reporte-pendiente-0')), 10000);
+  // reporte.click();
+});
+
+Then('debo poder indicar los detalles de la finalizacion', async () => {
+  const textarea = await driver.wait(until.elementLocated(By.id('reporte-textbox-0')));
+  textarea.sendKeys('Esta es una descripción');
+});
+
+When('hago click en el botón de enviar reporte final', async () => {
+  const button = await driver.wait(until.elementLocated(By.name('enviar-reporte-final')), 10000);
+  button.click();
+});
+
+Then('se debe mostrar una advertencia confirmando el envío.', async () => {
+  const alerta = await driver.wait(until.elementLocated(By.className('modal-basic')), 10000);
+  const alertaPresente = await alerta.isDisplayed();
+  if (!alertaPresente) {
+    assert.fail('No se presento alerta al ingresar reporte sin detalles entregados');
+  }
+  driver.close();
 });

@@ -88,39 +88,43 @@ function AcordeonBugsProceso() {
     <>
       <Accordion className="acordeon-bugs-proceso" activeKey={activeItem} onSelect={handleItemClick}>
         {listaReportes.map((list, index) => (
-          <Accordion.Item key={index} eventKey={index} id={`reporte-pendiente-${index}`}>
-            <Card>
-              <Accordion.Header>
-                <div>
-                  <span className="bug-info">
-                    <span> Bug {index + 1}</span>
-                    <span>Proyecto: {list.nombreProyecto}</span>
-                    <span>{list.fechaEmision.toDate().toLocaleDateString()} - {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleDateString()}</span> : <span>Por determinar</span>}</span>
-                    <span>
-                      {list.prioridad === 1 && <span>Prioridad: Baja</span>}
-                      {list.prioridad === 2 && <span>Prioridad: Media</span>}
-                      {list.prioridad === 3 && <span>Prioridad: Alta</span>}
+          <div key={index} id={`reporte-pendiente-${index}`}>
+            <Accordion.Item eventKey={index} >
+              <Card>
+                <Accordion.Header>
+                  <div>
+                    <span className="bug-info">
+                      <span> Bug {index + 1}</span>
+                      <span>Proyecto: {list.nombreProyecto}</span>
+                      <span>{list.fechaEmision.toDate().toLocaleDateString()} - {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleDateString()}</span> : <span>Por determinar</span>}</span>
+                      <span>
+                        {list.prioridad === 1 && <span>Prioridad: Baja</span>}
+                        {list.prioridad === 2 && <span>Prioridad: Media</span>}
+                        {list.prioridad === 3 && <span>Prioridad: Alta</span>}
+                      </span>
                     </span>
-                  </span>
-                </div>
-              </Accordion.Header>
-              <Accordion.Body>
-                <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> <pre className='descripcion-bug'>{list.descripcionAdministrador}</pre>
-                <textarea className="textarea-custom textarea-basic"
-                  value={descripcionReporte}
-                  onChange={handleDescripcionReporte}
-                  placeholder="Ingrese los detalles del avance a enviar" />
-                <ButtonToolbar className="botones-container">
-                  <Button variant="secondary" className="boton-parcial" onClick={() => handleClickButtonParcial(list.id, descripcionReporte)}>
-                    Enviar reporte parcial
-                  </Button>
-                  <Button variant="primary" name='enviar-reporte-final' className="boton-final" onClick={() => handleClickButtonFinal(list.id, descripcionReporte)}>
-                    Enviar reporte final
-                  </Button>
-                </ButtonToolbar>
-              </Accordion.Body>
-            </Card>
-          </Accordion.Item>
+                  </div>
+                </Accordion.Header>
+                <Accordion.Body>
+                  <strong className="descripcion-titulo">Descripción del Bug</strong> <br /> <pre className='descripcion-bug'>{list.descripcionAdministrador}</pre>
+                  <textarea className="textarea-custom textarea-basic"
+                    value={descripcionReporte}
+                    onChange={handleDescripcionReporte}
+                    placeholder="Ingrese los detalles del avance a enviar"
+                    id={`reporte-textbox-${index}`}
+                  />
+                  <ButtonToolbar className="botones-container">
+                    <Button variant="secondary" className="boton-parcial" onClick={() => handleClickButtonParcial(list.id, descripcionReporte)}>
+                      Enviar reporte parcial
+                    </Button>
+                    <Button variant="primary" name='enviar-reporte-final' className="boton-final" onClick={() => handleClickButtonFinal(list.id, descripcionReporte)}>
+                      Enviar reporte final
+                    </Button>
+                  </ButtonToolbar>
+                </Accordion.Body>
+              </Card>
+            </Accordion.Item>
+          </div>
         ))}
       </Accordion>
 
