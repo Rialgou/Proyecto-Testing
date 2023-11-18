@@ -4,6 +4,7 @@ import {
   Row,
   Col,
   ToggleButton,
+  Button,
 } from "react-bootstrap";
 
 import { VscNewFile } from "react-icons/vsc";
@@ -29,24 +30,26 @@ function RadioButtonDepurador({ radioValue, setRadioValue }) {
         <Col>
           <ButtonGroup vertical>
             {radios.map((radio, idx) => (
-              <ToggleButton
+              <Button
                 key={idx}
                 id={`radio-${idx}`}
-                type="radio"
                 variant="outline-dark"
                 name="radio"
-                value={radio.value}
                 checked={radioValue === radio.value}
-                onChange={(e) => {
-                  setRadioValue(e.currentTarget.value);
+                onClick={(e) => {
+                  setRadioValue(radio.value);
                 }}
                 className="opciones my-3"
+                style={{
+                  background: radioValue === radio.value ? 'black' : '#f1f1f1',
+                  color: radioValue === radio.value ? 'white' : 'black'
+                }}
               >
                 <div className="texto">
                   <span className="logo">{radio.logo}</span>
                   <span className="name">{radio.name}</span>
                 </div>
-              </ToggleButton>
+              </Button>
             ))}
           </ButtonGroup>
         </Col>

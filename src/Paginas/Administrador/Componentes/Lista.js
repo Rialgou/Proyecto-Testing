@@ -70,7 +70,7 @@ function Lista({ estado, reasignacion }) {
                   as={Link}
                   to={rutaReporteFinal(reporte.id)}
                   className="mt-2 mb-2 item ingresar"
-                  id="probar"
+                  id={`probar-${index}`}
                   variant="dark"
                   style={{
                     flexBasis: "10.0%",
@@ -110,7 +110,7 @@ function Lista({ estado, reasignacion }) {
                   as={Link}
                   to={rutaPorConfirmar(reporte.id)}
                   className="mt-2 mb-2 item ingresar"
-                  id="probar"
+                  id={`probar-${index}`}
                   variant="dark"
                   style={{
                     flexBasis: "10.0%",
@@ -148,7 +148,7 @@ function Lista({ estado, reasignacion }) {
                   as={Link}
                   to={rutaReasignacion(reporte.id)}
                   className="mt-2 mb-2 item ingresar"
-                  id="probar"
+                  id={`probar-${index}`}
                   variant="dark"
                   style={{
                     flexBasis: "10.0%",
@@ -185,7 +185,7 @@ function Lista({ estado, reasignacion }) {
                 as={Link}
                 to={rutaReporte(reporte.id)}
                 className="mt-2 mb-2 item ingresar"
-                id="probar"
+                id={`probar-${index}`}
                 variant="dark"
                 style={{
                   flexBasis: "10.0%",
@@ -220,7 +220,7 @@ function Lista({ estado, reasignacion }) {
                 as={Link}
                 to={rutaEnProceso(reporte.id)}
                 className="mt-2 mb-2 item ingresar"
-                id="probar"
+                id={`probar-${index}`}
                 variant="dark"
                 style={{
                   flexBasis: "10.0%",
