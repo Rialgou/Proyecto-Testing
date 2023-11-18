@@ -63,4 +63,6 @@ Para ejecutar las pruebas de aceptación de la aplicación debes estar ubicado e
 npm start para iniciar el proyecto, el que es necesario para utilizar selenium
 npx cucumber-js features para ejecutar las pruebas de aceptación
 
+para ejecutar pruebas individualmente
+npx cucumber-js features/nombre_feature.feature 
 ```

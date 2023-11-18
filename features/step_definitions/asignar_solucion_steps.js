@@ -14,7 +14,7 @@ Before(async () => {
 After(async () => {
   // Realizar acciones posteriores si es necesario
   // Cerrar el navegador
-  await driver.quit();
+  //await driver.close();
 });
 
 // PASO: Dado que soy un administrador autenticado

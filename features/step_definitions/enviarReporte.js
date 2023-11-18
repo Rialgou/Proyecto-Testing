@@ -11,8 +11,8 @@ const driver = new Builder().withCapabilities(capabilities).build();
 const newTitle = faker.internet.domainName();
 const newDescription =faker.music.songName();
 
-After(function(){
-  //driver.close();
+After(async function(){
+  //await driver.close();
 })
 Given('soy un usuario autenticado en la página de nuevo reporte',{timeout:60 * 1000}, async function () {
   // Nos ubicamos en la login screen e iniciamos sesion con las credenciales de un usuario
