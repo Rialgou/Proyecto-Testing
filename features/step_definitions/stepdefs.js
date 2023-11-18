@@ -9,6 +9,8 @@ capabilities.set('chromeOptions', { "w3c": false });
 const driver = new Builder().withCapabilities(capabilities).build();
 
 
+/////////////////////////////////////////////////////////////////////
+
 Given('estoy en el panel de control del administrador', async () => {
   await driver.get('http://localhost:3000');
   const emailInput = driver.findElement(By.name('email'));
@@ -57,6 +59,47 @@ Then('se debe mostrar una advertencia, pidiendo rellenar todos los campos', asyn
   const alertaPresente = await alerta.isDisplayed();
   if (!alertaPresente) {
     assert.fail('No se presento alerta al ingresar reporte sin depurador asignado');
+  }
+  driver.close();
+});
+
+/////////////////////////////////////////////////////////////////////
+
+Given('estoy en el panel de control del depurador', async () => {
+  await driver.get('http://localhost:3000');
+  const emailInput = driver.findElement(By.name('email'));
+  emailInput.sendKeys('ignacioarcic@gmail.com');
+  const passwordInput = driver.findElement(By.name('contrasena'));
+  passwordInput.sendKeys('IgnacioArcic123');
+  const loginButton = driver.findElement(By.name('ingresar'));
+  loginButton.click();
+});
+
+When('hago click en el botón bugs en proceso del menú lateral', async () => {
+  const button = await driver.wait(until.elementLocated(By.id('radio-0')), 10000);
+  button.click();
+  const cerrarPanel = driver.findElement(By.className('btn-close'));
+  cerrarPanel.click();
+});
+
+Then('debería ver la lista con los bugs en proceso', async () => {
+  const lista = await driver.wait(until.elementLocated(By.className('acordeon-bugs-proceso accordion')), 10000);
+  const listaVisible = await lista.isDisplayed();
+  if (listaVisible == false) {
+    assert.fail('Lista de reportes no visible');
+  }
+});
+
+When('hago click en el botón de enviar reporte final del primer bug', async () => {
+  const button = await driver.wait(until.elementLocated(By.name('enviar-reporte-final')), 10000);
+  button.click();
+});
+
+Then('se debe mostrar una advertencia, pidiendo dar detalles del avance.', async () => {
+  const alerta = await driver.wait(until.elementLocated(By.id('modal-content')), 10000);
+  const alertaPresente = await alerta.isDisplayed();
+  if (!alertaPresente) {
+    assert.fail('No se presento alerta al ingresar reporte sin detalles entregados');
   }
   driver.close();
 });
