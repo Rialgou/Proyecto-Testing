@@ -126,6 +126,7 @@ function NuevoReporte() {
           centered
           show={showAlertSinContenido}
           onHide={handleCloseAlertSinContenido}
+          data-testid="no-fields-modal"
           className="modal-basic"
         >
           <Modal.Header closeButton>

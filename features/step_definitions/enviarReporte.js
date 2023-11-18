@@ -23,21 +23,24 @@ Given('soy un usuario autenticado en la página de nuevo reporte',{timeout:60 * 
   passwordInput.sendKeys('CeciliaHernandez123');
   const loginButton = await driver.findElement(By.xpath("//button[text()='Iniciar sesion']"));
   await loginButton.click();
-  // Agregamos 
+  // Presionamos el boton de crear nuevo reporte
   const newReport = await driver.wait(until.elementLocated(By.name('nuevo-reporte')));
   await newReport.click();
 });
 
 When('ingreso todos los detalles del reporte de bug válidos', async function () {
+  // Seleccionamos un proyecto
   const selectProject = await driver.findElement(By.xpath("//button[text()='Seleccionar proyecto']"));
   await selectProject.click();
   const project = await driver.wait(until.elementLocated(By.xpath("//button[text()='EduQuest']")));
   await project.click();
   await selectProject.click();
+  // Le agregamos un titulo al reporte de bug
   const bugTitleSelector = await driver.findElement(By.xpath("//button[text()='Título del Bug']"));
   await bugTitleSelector.click();
   const bugTitle = await driver.wait(until.elementLocated(By.css('[data-testid="title-test"]')));
   bugTitle.sendKeys(newTitle);
+  // Le agregamos una descripción al reporte de bug
   const bugDescriptionSelector = await driver.findElement(By.xpath("//button[text()='Descripción del Bug']"));
   await bugDescriptionSelector.click();
   const bugDescription = await driver.wait(until.elementLocated(By.css('[data-testid="description-test"]')));
@@ -65,6 +68,7 @@ Then('debería ver un mensaje de éxito', async function () {
 });
 
 Then('la lista de reportes debería contener el nuevo reporte',async function () {
+  // Accedemos al primer hijo 
   const element = await driver.wait(
     until.elementLocated(By.css('.accordion .accordion-item .card .accordion-header .accordion-button div .bug-info span:last-child')),
     10000 // tiempo de espera en milisegundos
@@ -77,4 +81,22 @@ Then('la lista de reportes debería contener el nuevo reporte',async function ()
   if(title !== newTitle) assert.fail("No se agrego el reporte con éxito")
 });
 
+When('dejo en blanco uno o más campos obligatorios del reporte de bug', async function () {
+  //solo seleccionara el proyecto
+  const selectProject = await driver.findElement(By.xpath("//button[text()='Seleccionar proyecto']"));
+  await selectProject.click();
+  const project = await driver.wait(until.elementLocated(By.xpath("//button[text()='EduQuest']")));
+  await project.click();
+});
 
+Then('debería ver un mensaje de error indicando que todos los campos obligatorios deben completarse', async function () {
+  // Espera a que el modal de error sea visible
+  const errorModal = await driver.wait(until.elementLocated(By.css('[data-testid="no-fields-modal"]')));
+  await driver.wait(until.elementIsVisible(errorModal));
+  // Encuentra el botón de cerrar dentro del modal
+  const closeButton = await errorModal.findElement(By.xpath('//button[text()="Cerrar"]'));
+  // Verifica que el modal esté presente
+  const isModalVisible = await errorModal.isDisplayed();
+  if(!isModalVisible) assert.fail("No se mostro un mensaje de error")
+  await closeButton.click();
+});

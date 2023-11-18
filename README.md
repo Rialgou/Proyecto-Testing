@@ -31,7 +31,6 @@ Si deseas ejecutar pruebas en la aplicación, puedes hacerlo con el siguiente co
 
 npm test
 
-
 Esto iniciará el entorno de pruebas y ejecutará las pruebas definidas en el proyecto.
 
 Pruebas de Aceptación
@@ -57,5 +56,11 @@ Historias de Usuario
 (US11) Como administrador, quiero poder revisar el bug antes de asignarlo a un depurador, para asegurarme de que el problema existe.
 
 (US12) Como administrador, quiero recibir reportes parciales y finales de los bugs por parte de los depuradores.
+
+
+Para ejecutar las pruebas de aceptación de la aplicación debes estar ubicado en la raiz del programa, luego en bash
+
+npm start para iniciar el proyecto, el que es necesario para utilizar selenium
+npx cucumber-js features para ejecutar las pruebas de aceptación
 
 ```
