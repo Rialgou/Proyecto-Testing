@@ -32,9 +32,13 @@ function Lista({ estado, reasignacion }) {
   };
 
   return (
-    <div className="lista-container">
+    <div className="lista-container" data-testid="lista-container">
       <div className="encabezado">
-        <ListGroup horizontal={"lg"} className="my-2">
+        <ListGroup
+          horizontal={"lg"}
+          className="my-2"
+          data-testid="encabezado-list"
+        >
           <ListGroup.Item
             className="mt-2 mb-2 item encabezado-item"
             style={{ flexBasis: "10.0%" }}
@@ -56,7 +60,7 @@ function Lista({ estado, reasignacion }) {
         </ListGroup>
       </div>
 
-      <div className="contenido">
+      <div className="contenido" data-testid="contenido-list">
         {estado === 4 &&
           listaReportes
             .filter((list) => list.reasignacion === false)

@@ -1,12 +1,7 @@
-import { obtenerReportesAdministrador } from "../../../Funciones/consultas";
-import { createContext, useState, useEffect, useContext } from "react";
-import { HomeContext } from "../../../ComponentesGlobales/Contextos/HomeContext";
-const ContextoAsignacion = createContext();
-
+// ... (código existente)
 
 const AsignacionProvider = ({ children }) => {
-
-  const {cuenta} = useContext(HomeContext);
+  const { cuenta } = useContext(HomeContext);
 
   const administradorId = cuenta.id; // Reemplazar con el ID del administrador
 
@@ -57,7 +52,10 @@ const AsignacionProvider = ({ children }) => {
   };
 
   return (
-    <ContextoAsignacion.Provider value={data}>
+    <ContextoAsignacion.Provider
+      value={data}
+      data-testid="contexto-asignacion-container"
+    >
       {children}
     </ContextoAsignacion.Provider>
   );
@@ -65,4 +63,4 @@ const AsignacionProvider = ({ children }) => {
 
 export { AsignacionProvider };
 
-export default ContextoAsignacion;
+// ... (código existente)

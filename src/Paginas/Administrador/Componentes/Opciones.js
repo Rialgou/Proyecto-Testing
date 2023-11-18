@@ -11,9 +11,10 @@ const Opciones = ({ titulo1, titulo2, estado, reasignacion }) => {
       <Container
         flex
         className="d-flex  flex-column justify-content-start align-items-start "
+        data-testid="opciones-container" // Agregado para identificación
       >
         <Row>
-          <Col className="mb-4 ">
+          <Col className="mb-4 " data-testid="opciones-title-col">
             <h1 className="titulo">
               <strong>{titulo1}</strong> <Badge bg="primary">{titulo2}</Badge>
             </h1>
@@ -21,7 +22,7 @@ const Opciones = ({ titulo1, titulo2, estado, reasignacion }) => {
         </Row>
 
         <Row>
-          <Col className="mb-5">
+          <Col className="mb-5" data-testid="opciones-filtrado-col">
             <Filtrado></Filtrado>
           </Col>
         </Row>
