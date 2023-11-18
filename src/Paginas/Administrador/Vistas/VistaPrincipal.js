@@ -28,8 +28,12 @@ function Home() {
       <Container
         fluid
         className="justify-content-center align-items-start pene1 mt-5"
+        data-testid="main-container"
       >
-        <Row className="d-flex flex-row justify-content-center align-items-start">
+        <Row
+          className="d-flex flex-row justify-content-center align-items-start"
+          data-testid="main-row"
+        >
           <Col
             md={2}
             className="d-flex justify-content-start align-items-start mx-3"
