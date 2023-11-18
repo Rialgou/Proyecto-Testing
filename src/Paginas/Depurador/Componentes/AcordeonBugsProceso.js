@@ -88,7 +88,7 @@ function AcordeonBugsProceso() {
     <>
       <Accordion className="acordeon-bugs-proceso" activeKey={activeItem} onSelect={handleItemClick}>
         {listaReportes.map((list, index) => (
-          <Accordion.Item key={index} eventKey={index}>
+          <Accordion.Item key={index} eventKey={index} id={`reporte-pendiente-${index}`}>
             <Card>
               <Accordion.Header>
                 <div>

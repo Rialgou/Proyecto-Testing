@@ -5,5 +5,5 @@ Feature: Reportar solucionado
     Given estoy en el panel de control del depurador
     When hago click en el botón bugs en proceso del menú lateral
     Then debería ver la lista con los bug en proceso
-    When hago click en el botón de enviar reporte final del primer bug
+    When hago click en el primer reporte de la lista y en su botón de enviar reporte final
     Then se debe mostrar una advertencia, pidiendo dar detalles del avance.
