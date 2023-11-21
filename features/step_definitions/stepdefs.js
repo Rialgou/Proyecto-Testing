@@ -1,7 +1,7 @@
 const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { Builder, By, Capabilities, Key, until } = require('selenium-webdriver');
-const { elementIsEnabled } = require('selenium-webdriver/lib/until');
+const { elementIsEnabled, elementLocated } = require('selenium-webdriver/lib/until');
 const fsp = require('fs').promises
 
 // driver setup
@@ -111,7 +111,7 @@ Then('se debe mostrar una advertencia, pidiendo dar detalles del avance.', async
 
 When('hago click en el primer reporte de la lista de reportes', async () => {
   // try {
-  const reporte = await driver.wait(elementIsEnabled(By.id('reporte-pendiente-0')), 10000);
+  const reporte = await driver.wait(elementLocated(By.id('reporte-pendiente-0')), 10000);
   await reporte.click()
   // perform actions on the element
   // } catch (e) {
