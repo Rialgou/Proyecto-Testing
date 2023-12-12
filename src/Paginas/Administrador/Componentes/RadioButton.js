@@ -1,22 +1,29 @@
-import { ButtonGroup, Container, Row, Col, ToggleButton, Button } from 'react-bootstrap';
-import '../Estilos/RadioButton.css';
+import {
+  ButtonGroup,
+  Container,
+  Row,
+  Col,
+  ToggleButton,
+  Button,
+} from "react-bootstrap";
+import "../Estilos/RadioButton.css";
 
-import { VscNewFile } from 'react-icons/vsc';
-import { GiConfirmed } from 'react-icons/gi';
-import { MdOutlineAssignment } from 'react-icons/md';
-import { AiOutlineCheckSquare } from 'react-icons/ai';
-import { BsCardChecklist } from 'react-icons/bs';
+import { VscNewFile } from "react-icons/vsc";
+import { GiConfirmed } from "react-icons/gi";
+import { MdOutlineAssignment } from "react-icons/md";
+import { AiOutlineCheckSquare } from "react-icons/ai";
+import { BsCardChecklist } from "react-icons/bs";
 
 function RadioButton({ radioValue, setRadioValue }) {
   const radios = [
-    { name: 'Bugs pendientes', value: '1', logo: <VscNewFile /> },
-    { name: 'Bugs por confirmar', value: '2', logo: <GiConfirmed /> },
-    { name: 'Bugs en proceso', value: '3', logo: <GiConfirmed /> },
-    { name: 'Reasignación', value: '4', logo: <MdOutlineAssignment /> },
-    { name: 'Reportes finales', value: '5', logo: <AiOutlineCheckSquare /> },
-    { name: 'Lista depuradores', value: '6', logo: <BsCardChecklist /> },
-    { name: 'Lista de clientes', value: '7', logo: <BsCardChecklist /> },
-    { name: 'Lista proyectos', value: '8', logo: <BsCardChecklist /> },
+    { name: "Bugs pendientes", value: "1", logo: <VscNewFile /> },
+    { name: "Bugs por confirmar", value: "2", logo: <GiConfirmed /> },
+    { name: "Bugs en proceso", value: "3", logo: <GiConfirmed /> },
+    { name: "Reasignación", value: "4", logo: <MdOutlineAssignment /> },
+    { name: "Reportes finales", value: "5", logo: <AiOutlineCheckSquare /> },
+    { name: "Lista depuradores", value: "6", logo: <BsCardChecklist /> },
+    { name: "Lista de clientes", value: "7", logo: <BsCardChecklist /> },
+    { name: "Lista proyectos", value: "8", logo: <BsCardChecklist /> },
   ];
 
   return (
@@ -32,8 +39,8 @@ function RadioButton({ radioValue, setRadioValue }) {
                 onClick={(e) => setRadioValue(radio.value)}
                 className="opciones my-3"
                 style={{
-                  background: radioValue === radio.value ? 'black' : '#f1f1f1',
-                  color: radioValue === radio.value ? 'white' : 'black'
+                  background: radioValue === radio.value ? "black" : "#f1f1f1",
+                  color: radioValue === radio.value ? "white" : "black",
                 }}
               >
                 <div className="texto">

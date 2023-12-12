@@ -34,7 +34,7 @@ const Reporte = () => {
 
       <Container fluid className=" mt-5 mb-5">
         <Row>
-        <Col xs={12} md={4}>
+          <Col xs={12} md={4}>
             <h2 className="margen text-center">
               <strong>Historial reportes </strong>
               <Badge pill bg="primary">
@@ -66,7 +66,6 @@ const Reporte = () => {
                       <strong>Plazo de entrega</strong>
                     </p>
                   </Col>
-                  
                 </ListGroup.Item>
 
                 <ListGroup.Item
@@ -79,7 +78,6 @@ const Reporte = () => {
                       <strong>Prioridad</strong>
                     </p>
                   </Col>
-                  
                 </ListGroup.Item>
 
                 <ListGroup.Item
@@ -92,11 +90,9 @@ const Reporte = () => {
                       <strong>Descripción</strong>
                     </p>
                   </Col>
-                  
                 </ListGroup.Item>
               </ListGroup>
             </Container>
-
           </Col>
           <Col
             xs={12}
@@ -137,12 +133,10 @@ const Reporte = () => {
                   </Col>
                   <Col xs={12} md={10} className="parrafo">
                     <div>
-                      <pre className="descripcion-bug">
-                        Descripción
-                      </pre>
+                      <pre className="descripcion-bug">Descripción</pre>
                     </div>
                   </Col>
-                  </ListGroup.Item>
+                </ListGroup.Item>
               </ListGroup>
 
               <hr
@@ -172,8 +166,7 @@ const Reporte = () => {
                       <strong>Fecha emisión</strong>
                     </p>
                   </Col>
-                  <Col xs={12} md={10}>
-                  </Col>
+                  <Col xs={12} md={10}></Col>
                 </ListGroup.Item>
 
                 <ListGroup.Item
@@ -186,15 +179,11 @@ const Reporte = () => {
                       <strong>Descripción</strong>
                     </p>
                   </Col>
-                  <Col xs={12} md={10} className="parrafo">
-                  </Col>
+                  <Col xs={12} md={10} className="parrafo"></Col>
                 </ListGroup.Item>
               </ListGroup>
             </Container>
           </Col>
-
-
-          
         </Row>
       </Container>
     </motion.div>

@@ -1,6 +1,6 @@
 import BarraSuperior from "../Componentes/BarraSuperiorAdministrador";
 import ContextoAdministrador from "../Contextos/ContextoAdministrador";
-import Modal from 'react-bootstrap/Modal';
+import Modal from "react-bootstrap/Modal";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 
@@ -17,19 +17,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 import { motion } from "framer-motion";
 
-
 import "../Estilos/AsignarReporte.css";
-import "../Estilos/VisualizarReportesParciales.css"
+import "../Estilos/VisualizarReportesParciales.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { aceptarBugFinal, rechazarReporteFinal } from "../../../Funciones/consultas";
+import {
+  aceptarBugFinal,
+  rechazarReporteFinal,
+} from "../../../Funciones/consultas";
 
 registerLocale("es", es);
 
 const ReasignacionDepurador = () => {
   const navigate = useNavigate();
-  let { reporte, proyecto, depurador, usuario, SetIDReporte, reportesParciales } = useContext(
-    ContextoAdministrador
-  );
+  let {
+    reporte,
+    proyecto,
+    depurador,
+    usuario,
+    SetIDReporte,
+    reportesParciales,
+  } = useContext(ContextoAdministrador);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -41,14 +48,11 @@ const ReasignacionDepurador = () => {
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
 
-
-  const totalPages = Math.ceil((reportesParciales.length) / itemsPerPage); // Se resta 1 para omitir el primer elemento
+  const totalPages = Math.ceil(reportesParciales.length / itemsPerPage); // Se resta 1 para omitir el primer elemento
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
-
-  
 
   const { id } = useParams();
   SetIDReporte(id);
@@ -56,65 +60,63 @@ const ReasignacionDepurador = () => {
   const formatoFecha = (fecha) => {
     const fechaFormaterada = fecha.toDate();
 
-    return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    return fechaFormaterada.toLocaleString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
   const [show, setShow] = useState(false);
-  const [textareaValue, setTextareaValue] = useState('');
+  const [textareaValue, setTextareaValue] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const [showModalAceptar, setShowModalAceptar] = useState(false);
 
-
   const [actualizarComponente, setActualizarComponente] = useState(false);
 
-
-
-
-  const handleAdminButtonClickReject = async() =>{
-    if(await rechazarReporteFinal(reporte.id)){
+  const handleAdminButtonClickReject = async () => {
+    if (await rechazarReporteFinal(reporte.id)) {
       handleClose();
-    }
-    else{
+    } else {
       console.log("hubo un error");
       alert("fallou");
     }
-  }
+  };
   const handleClose = () => {
     setShow(false);
-    setTextareaValue(''); 
+    setTextareaValue("");
     setShowModal(true);
   };
-  
-  const handleCancel = () =>{
+
+  const handleCancel = () => {
     setShow(false);
-    setTextareaValue('');
+    setTextareaValue("");
   };
-  
+
   const handleShow = () => setShow(true);
-  
+
   const handleTextareaChange = (event) => {
     setTextareaValue(event.target.value);
   };
 
-  const handleModalClose = () =>{
+  const handleModalClose = () => {
     setShowModal(false);
     setActualizarComponente(true);
     navigate("/administrador");
   };
-  const handleModalAceptarClose = ()=>{
+  const handleModalAceptarClose = () => {
     setShowModalAceptar(false);
     setActualizarComponente(true);
     navigate("/administrador");
-  }
+  };
 
-  const handleAccept = async () =>{
-    if(await aceptarBugFinal(reporte.id)){
+  const handleAccept = async () => {
+    if (await aceptarBugFinal(reporte.id)) {
       setShowModalAceptar(true);
-    }
-    else{
+    } else {
       alert("error");
     }
-  }
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -135,11 +137,11 @@ const ReasignacionDepurador = () => {
             <h2 className="margen text-center">
               <strong>Carta de</strong>
               <Badge pill bg="primary">
-              resumen
+                resumen
               </Badge>
             </h2>
             <Container fluid className="mt-4 ms-5 me-3 contenedor-formulario">
-            <ListGroup as="ul" id="listas">
+              <ListGroup as="ul" id="listas">
                 <ListGroup.Item
                   as="li"
                   className="d-flex justify-content-between align-items-start lista-item"
@@ -151,7 +153,9 @@ const ReasignacionDepurador = () => {
                     </h5>
                   </Col>
                   <Col xs={12} md={10}>
-                    <p className="parrafo">&nbsp;&nbsp;&nbsp;{proyecto.nombre}</p>
+                    <p className="parrafo">
+                      &nbsp;&nbsp;&nbsp;{proyecto.nombre}
+                    </p>
                   </Col>
                 </ListGroup.Item>
 
@@ -233,8 +237,12 @@ const ReasignacionDepurador = () => {
                     </p>
                   </Col>
                   <Col xs={12} md={10}>
-                    <p className="parrafo"> 
-                    {depurador.nombre ? <span>{depurador.nombre}</span> : <span>Cargando...</span>} 
+                    <p className="parrafo">
+                      {depurador.nombre ? (
+                        <span>{depurador.nombre}</span>
+                      ) : (
+                        <span>Cargando...</span>
+                      )}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -251,7 +259,19 @@ const ReasignacionDepurador = () => {
                   </Col>
                   <Col xs={12} md={10}>
                     <p className="parrafo">
-                    {reporte.fechaEstimadaTermino ? <span>{reporte.fechaEstimadaTermino.toDate().toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span> : <span>Cargando...</span>} 
+                      {reporte.fechaEstimadaTermino ? (
+                        <span>
+                          {reporte.fechaEstimadaTermino
+                            .toDate()
+                            .toLocaleString(undefined, {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })}
+                        </span>
+                      ) : (
+                        <span>Cargando...</span>
+                      )}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -285,7 +305,7 @@ const ReasignacionDepurador = () => {
                       <strong>Descripción</strong>
                     </p>
                   </Col>
-                  
+
                   <Col xs={12} md={10} className="parrafo">
                     <div>
                       <pre className="descripcion-bug">
@@ -295,32 +315,32 @@ const ReasignacionDepurador = () => {
                   </Col>
                 </ListGroup.Item>
               </ListGroup>
-
-              
-
-
             </Container>
           </Col>
 
-          <Col xs={12} md={7} className="d-flex flex-column justify-content-start align-items-center">
+          <Col
+            xs={12}
+            md={7}
+            className="d-flex flex-column justify-content-start align-items-center"
+          >
             <h2 className="margen text-center">
               <strong>Historial de</strong>
               <Badge pill bg="primary">
-              reportes
+                reportes
               </Badge>
             </h2>
             <Container fluid className="mt-4 ms-md-3 contenedor-historial">
               <ListGroup as="ul" id="listas">
                 {!reporte === 0 ? (
                   <ListGroup.Item
-                  as="li"
-                  className="d-flex justify-content-between align-items-start lista-item"
-                  variant="dark"
+                    as="li"
+                    className="d-flex justify-content-between align-items-start lista-item"
+                    variant="dark"
                   >
                     <Col xs={12} md={5}>
-                        <h5>
-                          <strong>Sin reportes existentes</strong>
-                        </h5>
+                      <h5>
+                        <strong>Sin reportes existentes</strong>
+                      </h5>
                     </Col>
                   </ListGroup.Item>
                 ) : (
@@ -350,7 +370,9 @@ const ReasignacionDepurador = () => {
 
                       <Col xs={7} md={11}>
                         <div>
-                          <pre className="descripcion-bug descripcion-bug2 parrafo">{reporte.comentarioFinal}</pre>
+                          <pre className="descripcion-bug descripcion-bug2 parrafo">
+                            {reporte.comentarioFinal}
+                          </pre>
                         </div>
                       </Col>
                     </ListGroup.Item>
@@ -358,7 +380,11 @@ const ReasignacionDepurador = () => {
                     {reportesParciales.length > 1 && (
                       <>
                         <hr
-                          style={{ height: "2px", background: "black", margin: "20px 0" }}
+                          style={{
+                            height: "2px",
+                            background: "black",
+                            margin: "20px 0",
+                          }}
                         ></hr>
 
                         <ListGroup.Item
@@ -379,27 +405,49 @@ const ReasignacionDepurador = () => {
                           variant="dark"
                         >
                           <Accordion className="acordion-reportes-parciales">
-                            {reportesParciales.slice(firstIndex,lastIndex).map((item, index) =>(
-                              <Accordion.Item eventKey={index.toString()} key={index}>
-                                <Accordion.Header>
-                                  Reporte {reportesParciales.length - firstIndex - index } 
-                                  &nbsp;&nbsp;-&nbsp;&nbsp;
-                                  {item ? <span>{item.fechaReporte.toDate().toLocaleString()}</span> : <span>Cargando...</span>}
-                                </Accordion.Header>
-                                <Accordion.Body>
-                                  <div>
-                                    <pre className="descripcion-bug parrafo">{item.comentario}</pre>
-                                  </div>
-                                </Accordion.Body>
-                              </Accordion.Item>
-                            ))}
+                            {reportesParciales
+                              .slice(firstIndex, lastIndex)
+                              .map((item, index) => (
+                                <Accordion.Item
+                                  eventKey={index.toString()}
+                                  key={index}
+                                >
+                                  <Accordion.Header>
+                                    Reporte{" "}
+                                    {reportesParciales.length -
+                                      firstIndex -
+                                      index}
+                                    &nbsp;&nbsp;-&nbsp;&nbsp;
+                                    {item ? (
+                                      <span>
+                                        {item.fechaReporte
+                                          .toDate()
+                                          .toLocaleString()}
+                                      </span>
+                                    ) : (
+                                      <span>Cargando...</span>
+                                    )}
+                                  </Accordion.Header>
+                                  <Accordion.Body>
+                                    <div>
+                                      <pre className="descripcion-bug parrafo">
+                                        {item.comentario}
+                                      </pre>
+                                    </div>
+                                  </Accordion.Body>
+                                </Accordion.Item>
+                              ))}
                           </Accordion>
 
                           {totalPages > 1 && (
                             <div className="pagination-buttons mt-3">
                               <Button
                                 variant="secondary"
-                                onClick={() => handlePageChange(currentPage === 1 ? 1 : currentPage - 1)}
+                                onClick={() =>
+                                  handlePageChange(
+                                    currentPage === 1 ? 1 : currentPage - 1
+                                  )
+                                }
                                 className="mr-auto"
                               >
                                 Anterior
@@ -407,7 +455,11 @@ const ReasignacionDepurador = () => {
                               <Button
                                 variant="secondary"
                                 onClick={() =>
-                                  handlePageChange(currentPage === totalPages ? totalPages : currentPage + 1)
+                                  handlePageChange(
+                                    currentPage === totalPages
+                                      ? totalPages
+                                      : currentPage + 1
+                                  )
                                 }
                                 className="ml-auto"
                               >
@@ -423,80 +475,98 @@ const ReasignacionDepurador = () => {
               </ListGroup>
             </Container>
             <div>
-                <>
-              <Button
-                variant="danger"
-                className=" botoness  mt-5 ms-5 "
-                onClick={handleShow}
-              >
-                Rechazar reporte
-              </Button>
-              <Modal centered show={show} onHide={handleCancel} dialogClassName="modal-basic" contentClassName="modal-reasignacion">
-        <Modal.Header closeButton>
-          <Modal.Title>
-            ¿Por qué está rechazando el reporte final?
-            <span role="img" aria-label="Emoticono Cara Pensativa"> 🤔</span>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <textarea
-            className="textarea-custom textarea-basic"
-            placeholder="Ingrese las razones por las cuales está rechazando el reporte final"
-            value={textareaValue}
-            onChange={handleTextareaChange}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="success"
-            disabled={textareaValue.trim() === ''}
-            onClick={()=> handleAdminButtonClickReject()}
-          >
-            Enviar
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      <Modal centered className="modal-basic" show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            Completado
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        Se ha rechazado la solicitud con éxito
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => handleModalClose()}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
-        </Modal>
-        </>
+              <>
+                <Button
+                  variant="danger"
+                  className=" botoness  mt-5 ms-5 "
+                  onClick={handleShow}
+                >
+                  Rechazar reporte
+                </Button>
+                <Modal
+                  centered
+                  show={show}
+                  onHide={handleCancel}
+                  dialogClassName="modal-basic"
+                  contentClassName="modal-reasignacion"
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>
+                      ¿Por qué está rechazando el reporte final?
+                      <span role="img" aria-label="Emoticono Cara Pensativa">
+                        {" "}
+                        🤔
+                      </span>
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <textarea
+                      className="textarea-custom textarea-basic"
+                      placeholder="Ingrese las razones por las cuales está rechazando el reporte final"
+                      value={textareaValue}
+                      onChange={handleTextareaChange}
+                    />
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="success"
+                      disabled={textareaValue.trim() === ""}
+                      onClick={() => handleAdminButtonClickReject()}
+                    >
+                      Enviar
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+                <Modal
+                  centered
+                  className="modal-basic"
+                  show={showModal}
+                  onHide={() => setShowModal(false)}
+                >
+                  <Modal.Header closeButton>
+                    <Modal.Title>Completado</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Se ha rechazado la solicitud con éxito
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="secondary"
+                      onClick={() => handleModalClose()}
+                    >
+                      Cerrar
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              </>
               <Button
                 variant="success"
                 className=" botoness mt-5 ms-5 "
-                onClick={()=> handleAccept()}
+                onClick={() => handleAccept()}
               >
                 Aceptar reporte
               </Button>
-              <Modal centered className="modal-basic" show={showModalAceptar} onHide={() => setShowModalAceptar(false)}>
+              <Modal
+                centered
+                className="modal-basic"
+                show={showModalAceptar}
+                onHide={() => setShowModalAceptar(false)}
+              >
                 <Modal.Header closeButton>
-                  <Modal.Title>
-                    Bug Completado
-                  </Modal.Title>
+                  <Modal.Title>Bug Completado</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                ¡Tu bug se ha completado con éxito!
-                </Modal.Body>
+                <Modal.Body>¡Tu bug se ha completado con éxito!</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={() => handleModalAceptarClose()}>
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleModalAceptarClose()}
+                  >
                     Cerrar
                   </Button>
                 </Modal.Footer>
               </Modal>
             </div>
           </Col>
-          
         </Row>
       </Container>
     </motion.div>

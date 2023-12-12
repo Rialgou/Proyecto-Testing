@@ -1,9 +1,8 @@
 // ... (código existente)
 import React, { createContext } from "react";
-import { useContext,useState,useEffect } from "react";
-import {HomeContext} from "../../../ComponentesGlobales/Contextos/HomeContext"
+import { useContext, useState, useEffect } from "react";
+import { HomeContext } from "../../../ComponentesGlobales/Contextos/HomeContext";
 import { obtenerReportesAdministrador } from "../../../Funciones/consultas";
-
 
 const ContextoAsignacion = createContext();
 
@@ -16,7 +15,7 @@ const AsignacionProvider = ({ children }) => {
   const [toggleText, setToggleText] = useState("Ordenar por");
   const [listaReportes, setListaReportes] = useState([]);
   const [estado, setEstado] = useState(null);
-  
+
   const handleItemClick = (value) => {
     setSelectedItem(value);
     switch (value) {

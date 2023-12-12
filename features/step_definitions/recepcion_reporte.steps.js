@@ -1,6 +1,11 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
-const { By, until } = require("selenium-webdriver");
+const { By, until, Capabilities, Builder } = require("selenium-webdriver");
 const assert = require("assert");
+
+// driver setup
+const capabilities = Capabilities.chrome();
+capabilities.set("chromeOptions", { w3c: false });
+const driver = new Builder().withCapabilities(capabilities).build();
 
 Given(
   "soy un administrador autenticado",

@@ -121,8 +121,6 @@ const Reporte = () => {
   const handleAdminButtonClickReject = async (comentario) => {
     if (await rechazarReporteUsuario(reporte.id, comentario)) {
       handleClose();
-    }
-    else {
     } else {
       console.log("hubo un error");
       alert("fallou");
@@ -130,8 +128,6 @@ const Reporte = () => {
   };
 
   const handleShow = () => setShow(true);
-
-  const handleCancel = () => {
   const handleCancel = () => {
     setShow(false);
     setTextareaValue("");
@@ -518,8 +514,9 @@ const Reporte = () => {
                   </Col>
                   <Col xs={12} md={9}>
                     <p
-                      className={`parrafo ${depuradorSeleccionado ? "" : "parrafo-placeholder"
-                        }`}
+                      className={`parrafo ${
+                        depuradorSeleccionado ? "" : "parrafo-placeholder"
+                      }`}
                     >
                       {depuradorSeleccionado
                         ? depuradorSeleccionado.nombre
@@ -540,8 +537,9 @@ const Reporte = () => {
                   </Col>
                   <Col xs={12} md={9}>
                     <p
-                      className={`parrafo ${fechaSeleccionada ? "" : "parrafo-placeholder"
-                        }`}
+                      className={`parrafo ${
+                        fechaSeleccionada ? "" : "parrafo-placeholder"
+                      }`}
                     >
                       {fechaSeleccionada ? (
                         fechaSeleccionada.toLocaleString(undefined, {
@@ -568,8 +566,9 @@ const Reporte = () => {
                   </Col>
                   <Col xs={12} md={9}>
                     <p
-                      className={`parrafo ${prioridadSeleccionada ? "" : "parrafo-placeholder"
-                        }`}
+                      className={`parrafo ${
+                        prioridadSeleccionada ? "" : "parrafo-placeholder"
+                      }`}
                     >
                       {prioridadSeleccionada
                         ? prioridadSeleccionada
@@ -590,8 +589,9 @@ const Reporte = () => {
                   </Col>
                   <Col xs={12} md={9}>
                     <p
-                      className={`parrafo ${descripcion ? "" : "parrafo-placeholder"
-                        }`}
+                      className={`parrafo ${
+                        descripcion ? "" : "parrafo-placeholder"
+                      }`}
                     >
                       <pre className="descripcion-bug">
                         {descripcion ? descripcion : "Escoger descripción"}
@@ -637,7 +637,7 @@ const Reporte = () => {
                   <Button
                     variant="success"
                     disabled={textareaValue.trim() === ""}
-                    onClick={()  => handleAdminButtonClickReject(textareaValue)}
+                    onClick={() => handleAdminButtonClickReject(textareaValue)}
                   >
                     Enviar
                   </Button>
@@ -671,7 +671,7 @@ const Reporte = () => {
                 variant="success"
                 className=" botoness mt-5 ms-5 "
                 onClick={enviarReporte}
-                name='enviar-reporte'
+                name="enviar-reporte"
               >
                 Enviar reporte
               </Button>

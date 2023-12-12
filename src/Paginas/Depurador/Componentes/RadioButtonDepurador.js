@@ -41,8 +41,8 @@ function RadioButtonDepurador({ radioValue, setRadioValue }) {
                 }}
                 className="opciones my-3"
                 style={{
-                  background: radioValue === radio.value ? 'black' : '#f1f1f1',
-                  color: radioValue === radio.value ? 'white' : 'black'
+                  background: radioValue === radio.value ? "black" : "#f1f1f1",
+                  color: radioValue === radio.value ? "white" : "black",
                 }}
               >
                 <div className="texto">

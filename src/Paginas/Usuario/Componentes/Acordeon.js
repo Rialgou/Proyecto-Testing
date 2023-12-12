@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import BotonesProyectos from "./BotonesProyectos";
-import Accordion from 'react-bootstrap/Accordion';
+import Accordion from "react-bootstrap/Accordion";
 
-import '../Estilos/Acordeon.css'
+import "../Estilos/Acordeon.css";
 
 function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
   const [desBug, setDescripcionBug] = useState("");
@@ -22,8 +22,7 @@ function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") 
-      event.preventDefault();
+    if (event.key === "Enter") event.preventDefault();
   };
 
   const handleProyectSelect = (id) => {
@@ -41,18 +40,21 @@ function Acordeon({ proyectoId, tituloBug, descripcionBug }) {
   };
 
   return (
-    <Accordion defaultActiveKey={['-1']} alwaysOpen>
+    <Accordion defaultActiveKey={["-1"]} alwaysOpen>
       <Accordion.Item eventKey="0">
-        <Accordion.Header >Seleccionar proyecto</Accordion.Header>
+        <Accordion.Header>Seleccionar proyecto</Accordion.Header>
         <Accordion.Body>
           <BotonesProyectos seleccionarProyecto={handleProyectSelect} />
         </Accordion.Body>
       </Accordion.Item>
 
-      <Accordion.Item eventKey="1" className={`titulo-bug-click ${isFirstClick ? 'first-click' : ''}`}>
+      <Accordion.Item
+        eventKey="1"
+        className={`titulo-bug-click ${isFirstClick ? "first-click" : ""}`}
+      >
         <Accordion.Header onClick={() => handleAccordionItemClick("1")}>
           Título del Bug
-          {showTextarea && ( 
+          {showTextarea && (
             <textarea
               data-testid="title-test"
               className="textarea-title"

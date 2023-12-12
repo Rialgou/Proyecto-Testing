@@ -75,7 +75,9 @@ function Usuario() {
               variant="dark"
               onClick={handleNewReportClick}
               name="nuevo-reporte"
-            >Crear nuevo reporte</Button>
+            >
+              Crear nuevo reporte
+            </Button>
           </div>
         </Stack>
       </main>

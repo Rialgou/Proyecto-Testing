@@ -7,8 +7,8 @@ function FiltroUsuario({ onFilterChange }) {
   const [selectedItem, setSelectedItem] = useState(0); // Estado para almacenar el elemento seleccionado
   const [toggleText, setToggleText] = useState("Ordenar por");
   const handleItemClick = (value) => {
-      setSelectedItem(value);
-      switch (value) {
+    setSelectedItem(value);
+    switch (value) {
       case -1:
         setToggleText("Rechazado");
         break;
@@ -25,7 +25,7 @@ function FiltroUsuario({ onFilterChange }) {
         setToggleText("En Proceso");
         break;
       case 4:
-        setToggleText("En Proceso")
+        setToggleText("En Proceso");
         break;
       case 5:
         setToggleText("Completado");
@@ -50,10 +50,19 @@ function FiltroUsuario({ onFilterChange }) {
 
       <Dropdown.Menu>
         <Dropdown.Item onClick={() => handleItemClick(0)}>Todos</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleItemClick(1)}>Pendiente</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleItemClick(2)}>En proceso</Dropdown.Item>{/*2 3 4 */}
-        <Dropdown.Item onClick={() => handleItemClick(5)}>Completado</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleItemClick(-1)}>Rechazado</Dropdown.Item>
+        <Dropdown.Item onClick={() => handleItemClick(1)}>
+          Pendiente
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleItemClick(2)}>
+          En proceso
+        </Dropdown.Item>
+        {/*2 3 4 */}
+        <Dropdown.Item onClick={() => handleItemClick(5)}>
+          Completado
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleItemClick(-1)}>
+          Rechazado
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

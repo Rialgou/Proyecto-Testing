@@ -2,20 +2,13 @@ import BarraSuperior from "../Componentes/BarraSuperiorAdministrador";
 import ContextoAdministrador from "../Contextos/ContextoAdministrador";
 import { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
-import {
-  Container,
-  Row,
-  Col,
-  Badge,
-  ListGroup,
-} from "react-bootstrap";
+import { Container, Row, Col, Badge, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { motion } from "framer-motion";
 
-
 import "../Estilos/AsignarReporte.css";
-import "../Estilos/VisualizarReportesParciales.css"
+import "../Estilos/VisualizarReportesParciales.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 registerLocale("es", es);
@@ -31,7 +24,11 @@ const Parcial = () => {
   const formatoFecha = (fecha) => {
     const fechaFormaterada = fecha.toDate();
 
-    return fechaFormaterada.toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    return fechaFormaterada.toLocaleString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
 
   return (
@@ -54,7 +51,7 @@ const Parcial = () => {
             <h2 className="margen text-center">
               <strong>Carta de</strong>
               <Badge pill bg="primary">
-              resumen
+                resumen
               </Badge>
             </h2>
             <Container fluid className="mt-4 ms-5 me-3 contenedor-formulario">
@@ -126,7 +123,9 @@ const Parcial = () => {
                     </h5>
                   </Col>
                   <Col xs={12} md={10}>
-                    <p className="parrafo">&nbsp;&nbsp;&nbsp;{proyecto.nombre}</p>
+                    <p className="parrafo">
+                      &nbsp;&nbsp;&nbsp;{proyecto.nombre}
+                    </p>
                   </Col>
                 </ListGroup.Item>
 
@@ -182,15 +181,19 @@ const Parcial = () => {
             </Container>
           </Col>
 
-          <Col xs={12} md={7} className="d-flex flex-column justify-content-start align-items-center">
+          <Col
+            xs={12}
+            md={7}
+            className="d-flex flex-column justify-content-start align-items-center"
+          >
             <h2 className="margen text-center">
-              <strong>Asignación en espera de  </strong>
+              <strong>Asignación en espera de </strong>
               <Badge pill bg="primary">
                 confirmación
               </Badge>
             </h2>
             <Container fluid className="mt-4 ms-md-3 contenedor-historial">
-            <ListGroup as="ul" id="listas">
+              <ListGroup as="ul" id="listas">
                 <ListGroup.Item
                   as="li"
                   className="d-flex justify-content-between align-items-start lista-item"
@@ -214,8 +217,12 @@ const Parcial = () => {
                     </p>
                   </Col>
                   <Col xs={12} md={10}>
-                    <p className="parrafo"> 
-                    {depurador.nombre ? <span>{depurador.nombre}</span> : <span>Cargando...</span>} 
+                    <p className="parrafo">
+                      {depurador.nombre ? (
+                        <span>{depurador.nombre}</span>
+                      ) : (
+                        <span>Cargando...</span>
+                      )}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -232,7 +239,19 @@ const Parcial = () => {
                   </Col>
                   <Col xs={12} md={10}>
                     <p className="parrafo">
-                    {reporte.fechaEstimadaTermino ? <span>{reporte.fechaEstimadaTermino.toDate().toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span> : <span>Cargando...</span>} 
+                      {reporte.fechaEstimadaTermino ? (
+                        <span>
+                          {reporte.fechaEstimadaTermino
+                            .toDate()
+                            .toLocaleString(undefined, {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })}
+                        </span>
+                      ) : (
+                        <span>Cargando...</span>
+                      )}
                     </p>
                   </Col>
                 </ListGroup.Item>
@@ -266,7 +285,7 @@ const Parcial = () => {
                       <strong>Descripción</strong>
                     </p>
                   </Col>
-                  
+
                   <Col xs={12} md={10} className="parrafo">
                     <div>
                       <pre className="descripcion-bug">
@@ -285,4 +304,3 @@ const Parcial = () => {
 };
 
 export default Parcial;
-

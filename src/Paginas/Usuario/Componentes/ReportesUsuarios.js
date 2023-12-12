@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import { getReportesUsuario } from '../../../Funciones/consultas';
+import React, { useState, useEffect, useRef } from "react";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import { getReportesUsuario } from "../../../Funciones/consultas";
 import "../Estilos/ReportesUsuarios.css";
 
-const ReportesUsuarios = ({filtro}) => {
+const ReportesUsuarios = ({ filtro }) => {
   const usuarioId = "umlvgp6OkqUwNtDeh1aA";
   const [listaReportesUsuario, setListaReportesUsuario] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,9 +65,12 @@ const ReportesUsuarios = ({filtro}) => {
               </Accordion.Header>
 
               <Accordion.Body>
-                <strong className="descripcion-titulo">Proyecto: </strong><span>{list.nombreProyecto}</span>
+                <strong className="descripcion-titulo">Proyecto: </strong>
+                <span>{list.nombreProyecto}</span>
                 <br />
-                <strong className="descripcion-titulo">Estado del reporte: </strong>
+                <strong className="descripcion-titulo">
+                  Estado del reporte:{" "}
+                </strong>
                 {list.estado === -1 && <span>Rechazado</span>}
                 {list.estado === 1 && <span>Pendiente</span>}
                 {list.estado === 2 && <span>En proceso</span>}
@@ -75,24 +78,45 @@ const ReportesUsuarios = ({filtro}) => {
                 {list.estado === 4 && <span>En proceso</span>}
                 {list.estado === 5 && <span>Completado</span>}
                 <div>
-                  <strong className="descripcion-titulo">Fecha de emisión del reporte: </strong>
+                  <strong className="descripcion-titulo">
+                    Fecha de emisión del reporte:{" "}
+                  </strong>
                   <span>{list.fechaEmision.toDate().toLocaleString()}</span>
                   <br />
                   {list.estado === -1 && (
-                  <>
-                  <strong className="descripcion-titulo">Motivo de rechazo </strong>
-                  {<pre className="descripcion-bug parrafo2">{list.comentarioRechazo}</pre>}
-                  </>
-                  )}
-                  {list.estado!== -1 && (
                     <>
-                    <strong className="descripcion-titulo">Fecha estimada  de termino: </strong>
-                    {list.fechaEstimadaTermino ? <span>{list.fechaEstimadaTermino.toDate().toLocaleString()}<br /></span>  : "Por determinar"}
+                      <strong className="descripcion-titulo">
+                        Motivo de rechazo{" "}
+                      </strong>
+                      {
+                        <pre className="descripcion-bug parrafo2">
+                          {list.comentarioRechazo}
+                        </pre>
+                      }
+                    </>
+                  )}
+                  {list.estado !== -1 && (
+                    <>
+                      <strong className="descripcion-titulo">
+                        Fecha estimada de termino:{" "}
+                      </strong>
+                      {list.fechaEstimadaTermino ? (
+                        <span>
+                          {list.fechaEstimadaTermino.toDate().toLocaleString()}
+                          <br />
+                        </span>
+                      ) : (
+                        "Por determinar"
+                      )}
                     </>
                   )}
                   <div>
-                    <strong className="descripcion-titulo">Descripción del Bug: </strong>
-                    <pre className="descripcion-bug parrafo2">{list.descripcionUsuario}</pre>
+                    <strong className="descripcion-titulo">
+                      Descripción del Bug:{" "}
+                    </strong>
+                    <pre className="descripcion-bug parrafo2">
+                      {list.descripcionUsuario}
+                    </pre>
                   </div>
                 </div>
               </Accordion.Body>
@@ -103,15 +127,22 @@ const ReportesUsuarios = ({filtro}) => {
 
       {totalPages > 1 && (
         <div className="pagination-buttons mt-3">
-          <Button variant="secondary" onClick={handlePreviousPage} disabled={currentPage === 1}>
+          <Button
+            variant="secondary"
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+          >
             Anterior
           </Button>
-          <Button variant="secondary" onClick={handleNextPage} disabled={currentPage === totalPages}>
+          <Button
+            variant="secondary"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
             Siguiente
           </Button>
         </div>
       )}
-      
     </>
   );
 };
